@@ -20,7 +20,13 @@ CREATE TABLESPACE cource_data
        owner postgres
        location 'C:\data1';
 
-drop table students cascade;
+CREATE TABLESPACE student_data
+       location 'C:\data1';
+
+CREATE DATABASE university_distributed
+       TABLESPACE student_data
+       ENCODING 'LATIN9';
+
 CREATE TABLE students (
     student_id SERIAL PRIMARY KEY,
     first_name VARCHAR(50),
@@ -250,5 +256,6 @@ CREATE TABLE semester_calendar (
 -- Task 5.2
 DROP DATABASE IF EXISTS university_test;
 DROP DATABASE IF EXISTS university_distributed;
+
 
 CREATE DATABASE university_backup TEMPLATE university_main;
